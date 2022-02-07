@@ -1,0 +1,17 @@
+﻿@model Matches 
+
+@{ 
+    ViewBag.Title = "Error Match";
+}
+
+<div class="alert alert-danger mt-1 mb-1">
+    <h4>Error Match</h4>
+    <hr />
+    <h5>
+        Match in Round: @Model.RoundNo between @Model.Home_Team and @Model.Away_Team has been inserted
+    </h5>
+</div>
+
+<a asp-action="Index" asp-controller="MatchesAPI" class="btn btn-outline-success">
+    Back to the matches
+</a>

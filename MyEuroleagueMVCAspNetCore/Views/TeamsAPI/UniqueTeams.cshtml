@@ -1,0 +1,17 @@
+﻿@model Teams
+
+@{
+    ViewBag.Title = "Error Team";
+}
+
+<div class="alert alert-danger mt-1 mb-1">
+    <h4>Error Team</h4>
+    <hr />
+    <h5>
+        There is already team with name: @Model.Name
+    </h5>
+</div>
+
+<a asp-action="Index" asp-controller="TeamsAPI" class="btn btn-outline-success">
+    Back to the teams
+</a>

@@ -1,0 +1,89 @@
+﻿@model IEnumerable<MyEuroleagueMVCAspNetCore.Models.Standings>
+
+@{
+    ViewData["Title"] = "Standings";
+}
+
+<h2>Standings</h2>
+&nbsp;
+<form method="get" asp-action="GetOverallStandings">
+    <p>     
+                <input type="search" placeholder="Choose the Round Number" value="@ViewData["getStandings"]" name="searchByStandingRound" style="width:200px" />         
+                <input type="submit" value="Search by round" class="btn btn-primary" />           
+                <a asp-action="GetOverallStandings"> Get Οverall Standings</a>      
+    </p>
+</form>
+&nbsp;
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Position#
+            </th>
+            <th>
+                Matches#
+            </th>
+            <th>
+                
+            </th>
+            <th>
+                Team
+            </th>
+            <th>
+                Wins
+            </th>
+            <th>
+                Loses
+            </th>
+            <th>
+                Points+
+            </th>
+            <th>
+                Points-
+            </th>
+            <th>
+                Points +/-
+            </th>
+            <th>
+                Extra Time Matches
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PositionNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MatchesNo)
+            </td>
+            <td>
+                <img src="@("~/image/"+item.TeamLogoImageName)" asp-append-version="true" width="50px" height="50px">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TeamName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Wins)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Loses)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PointsPlus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PointsMinus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PointsDif)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExtraTimeMatches)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

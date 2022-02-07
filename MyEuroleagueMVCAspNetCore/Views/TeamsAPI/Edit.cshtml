@@ -1,0 +1,71 @@
+﻿@model MyEuroleagueMVCAspNetCore.Models.Teams
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Teams</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TeamID" />
+            <input hidden asp-for="ExistingPhotoPath">
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Country" class="control-label"></label>
+                <input asp-for="Country" class="form-control" />
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Coach" class="control-label"></label>
+                <input asp-for="Coach" class="form-control" />
+                <span asp-validation-for="Coach" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageFileTeamLogo" class="control-label"></label>
+                <div class="col-12">
+                    @*<div class="custom-file">*@
+                        <input asp-for="ImageFileTeamLogo" class="form-control custom-file-input" />
+                        <label class="custom-file-label" >Click here to change Logo</label>
+                    @*</div>*@
+                </div>
+                @*<span asp-validation-for="ImageFileTeamLogo" class="text-danger"></span>*@
+            </div>
+            <div class="form-group row col-sm-6 offset-3">
+                @if (!System.IO.File.Exists(Model.ExistingPhotoPath))
+                {
+                    <label class="text-danger">No selected Logo: </label>
+                }
+                <img src="@("~/image/"+Model.TeamLogoImageName)" class="img-thumbnail" asp-append-version="true">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-outline-success" />
+                <a asp-action="Index" class="btn btn-outline-primary" type="reset">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@*<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script>
+    $(document).ready(function () {
+        $('.custom-file-input').on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).next('.custom-file-label').html(fileName);
+        });
+    });
+</script>
+}

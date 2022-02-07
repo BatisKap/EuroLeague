@@ -1,0 +1,68 @@
+﻿@model MyEuroleagueMVCAspNetCore.Models.Matches
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Matches</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RoundNo" class="control-label"></label>
+                <input asp-for="RoundNo" class="form-control" />
+                <span asp-validation-for="RoundNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Home_Team" class="control-label"></label>
+                <br>
+                <select id="Select1" asp-for="Home_Team" asp-items="@(new SelectList(Model.TeamsList.Items,"Key","Display"))">
+                    <option value="" selected disabled>Select Home Team</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Away_Team" class="control-label"></label>
+                <br>
+                <select id="Select2" asp-for="Away_Team" asp-items="@(new SelectList(Model.TeamsList.Items,"Key","Display"))">
+                    <option value="" selected disabled>Select Away Team</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="HomePointsScored" class="control-label"></label>
+                <input asp-for="HomePointsScored" class="form-control" />
+                <span asp-validation-for="HomePointsScored" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AwayPointsScored" class="control-label"></label>
+                <input asp-for="AwayPointsScored" class="form-control" />
+                <span asp-validation-for="AwayPointsScored" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HadExtraTime" /> @Html.DisplayNameFor(model => model.HadExtraTime)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndOfFourthPeriodPoints" class="control-label"></label>
+                <input asp-for="EndOfFourthPeriodPoints" class="form-control" />
+                <span asp-validation-for="EndOfFourthPeriodPoints" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+&nbsp;
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

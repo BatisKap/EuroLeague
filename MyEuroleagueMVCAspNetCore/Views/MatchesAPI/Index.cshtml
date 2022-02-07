@@ -1,0 +1,96 @@
+﻿
+@model ReflectionIT.Mvc.Paging.PagingList<MyEuroleagueMVCAspNetCore.Models.Matches>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *,ReflectionIT.Mvc.Paging
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<nav aria-label="Pagination Navigation">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form method="get" asp-action="Index">
+    <p>
+        <input type="search" placeholder="Choose the Round Number" value="@ViewData["getMatches"]" name="searchRound" style="width:200px" />
+        <input type="submit" value="Search by round" class="btn btn-primary" />
+        <a asp-action="Index"> Get All Matches</a>
+    </p>
+</form>
+<p></p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RoundNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Home_Team)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Away_Team)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomePointsScored)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AwayPointsScored)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HadExtraTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndOfFourthPeriodPoints)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoundNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Home_Team)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Away_Team)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HomePointsScored)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AwayPointsScored)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HadExtraTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndOfFourthPeriodPoints)
+                </td>
+                @*<td>
+                        <a asp-action="Edit" asp-route-id="@item.MatchID">Edit</a>|
+                        <a asp-action="Details" asp-route-id="@item.MatchID">Details</a>|
+                        <a asp-action="Delete" asp-route-id="@item.MatchID">Delete</a>
+                    </td>*@
+                <td style="width:20%">
+                    <a asp-action="Edit" asp-route-id="@item.MatchID"><i class="fas fa-edit"></i> Edit </a>
+                    <a asp-action="Details" asp-route-id="@item.MatchID"><i class="fas fa-info"></i>Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.MatchID"><i class="fas fa-trash-alt"></i>Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+&nbsp;
+@*<nav aria-label="Pagination Navigation">
+    <vc:pager paging-list="@Model" />
+</nav>*@
